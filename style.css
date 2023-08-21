@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0d1b2a;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body > .container {
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 630px;
+    height: 630px;
+    font-family: 'Roboto', sans-serif;
+}
+
+body > .container > .sudoku-table {
+    position: absolute;
+    width: 630px;
+    height: 630px;
+    background: transparent;
+    border: #fff 1px solid;
+    visibility: collapse;
+}
+
+body > .container > .start-box {
+    background-color: #fff;
+    width: 200px;
+    height: 80px;
+    text-align: center;
+    position: absolute;
+    font-size: 30px;
+    font-weight: 500;
+    border-radius: 15px;
+    justify-content: center;
+    padding: 23px;
+    cursor: pointer;
+}
+
+body > .container > .start-box > i {
+    margin-right: 15px;
+    color: #0d1b2a;
+}
+
+.square {
+    width: 70px;
+    height: 70px;
+    border: #fff 1px solid;
+}
