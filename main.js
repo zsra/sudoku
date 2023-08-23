@@ -1,4 +1,5 @@
 var button = document.querySelector(".start-box");
+var gameContainer = document.querySelector(".game-container");
 var table = document.querySelector(".sudoku-table");
 var tableBody = document.querySelector(".sudoku-table-body");
 
@@ -14,7 +15,7 @@ button.addEventListener('click', () => {
 
 function showTable() {  
   button.style.visibility = "collapse";
-  table.style.visibility = "visible";
+  gameContainer.style.visibility = "visible";
 }
 
 function createCells(puzzle) {
@@ -26,6 +27,9 @@ function createCells(puzzle) {
 
           if(puzzle[i][j] !== 0) {
               cell.innerHTML = puzzle[i][j];
+          } else {
+            let input = document.createElement('input');
+            cell.appendChild(input);
           }
       }
   }

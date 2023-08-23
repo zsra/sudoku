@@ -20,12 +20,23 @@ body > .container {
     align-items: center;
     justify-content: center;
     display: flex;
-    width: 700px;
-    height: 700px;
+    width: 900px;
+    height: 650px;
     font-family: 'Roboto', sans-serif;
 }
 
-body > .container > .start-box {
+.container > .game-container {
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    visibility: collapse;
+    background-color: aqua;
+    display: flex;
+}
+
+.container > .start-box {
     background-color: #fff;
     width: 200px;
     height: 80px;
@@ -39,22 +50,21 @@ body > .container > .start-box {
     cursor: pointer;
 }
 
-body > .container > .start-box > i {
+.start-box > i {
     margin-right: 15px;
     color: #0d1b2a;
 }
 
-body > .container > .sudoku-table {
+.game-container > .sudoku-table {
     position: absolute;
     width: 630px;
     height: 630px;
     background: transparent;
-    visibility: collapse;
     border: 3px solid #fff;
     border-collapse: collapse;
 }
 
-body > .container > .sudoku-table td {
+.game-container > .sudoku-table td {
     width: 70px;
     height: 70px;
     background-color: #0a1622;
@@ -65,17 +75,72 @@ body > .container > .sudoku-table td {
     justify-content: center;
 }
 
-body > .container > .sudoku-table td,
-body > .container > .sudoku-table tr {
+.game-container > .sudoku-table td,
+.game-container > .sudoku-table tr {
     border: 1px solid #818181;
 }
 
-body > .container > .sudoku-table tr:nth-child(3),
-body > .container > .sudoku-table tr:nth-child(6) {
+.game-container > .sudoku-table tr:nth-child(3),
+.game-container > .sudoku-table tr:nth-child(6) {
     border-bottom: 2px solid #d1d1d1;
 }
 
-body > .container > .sudoku-table td:nth-child(3),
-body > .container > .sudoku-table td:nth-child(6) {
+.game-container > .sudoku-table td:nth-child(3),
+.game-container > .sudoku-table td:nth-child(6) {
     border-right: 2px solid #d1d1d1;
+}
+
+.game-container > .sudoku-table td > input {
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    justify-content: center;
+    background-color: #0a1622;
+    color: #b8fd47;
+}
+
+body > .container > .game-container > .game-control {
+    background-color: blueviolet;
+    width: 250px;
+    height: 100%;
+    margin-left: auto; 
+    margin-right: 0;
+}
+
+.game-control > .general-control {
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 15px;
+    justify-content: center;
+    padding: 20px;
+    cursor: pointer;
+    margin-left: auto; 
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+.game-control > .general-control:hover {
+    transform: scale(0.99);
+}
+
+.game-control > .new-game {
+    background-color: #fff;
+}
+
+.game-control > .reset-game {
+    background-color: #d1d1d1;
+    
+}
+
+.game-control > .difficulty {
+
+}
+
+.game-control > .time-holder {
+
 }
