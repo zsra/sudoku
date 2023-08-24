@@ -32,7 +32,6 @@ body > .container {
     width: 100%;
     height: 100%;
     visibility: collapse;
-    background-color: aqua;
     display: flex;
 }
 
@@ -102,7 +101,6 @@ body > .container {
 }
 
 body > .container > .game-container > .game-control {
-    background-color: blueviolet;
     width: 250px;
     height: 100%;
     margin-left: auto; 
@@ -137,10 +135,47 @@ body > .container > .game-container > .game-control {
     
 }
 
-.game-control > .difficulty {
-
+.game-control > .time-holder {
+    margin-left: auto; 
+    margin-right: auto;
+    margin-top: 60px;
+    font-size: 30px;
+    font-weight: 500;
+    color: #fff;
+    justify-content: center;
+    text-align: center;
 }
 
-.game-control > .time-holder {
+.game-control > .difficulty-container {
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    margin: 20px;
+    margin-left: auto; 
+    margin-right: auto;
+    margin-top: 60px;
+}
 
+.game-control > .difficulty-container > .slider-label {
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    display: block;
+    margin-top: 10px;
+}
+
+.game-control > .difficulty-container > .slider-label:hover {
+    background-color: #d1d1d1;
+}
+
+.game-control > .difficulty-container > input[type="radio"]:checked + label {
+    background-color: #b8fd47;
+    color: fff;
+}
+
+.game-control > .difficulty-container >  input[type="radio"] {
+    display: none;
 }

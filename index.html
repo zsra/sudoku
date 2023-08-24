@@ -16,8 +16,17 @@
             <div class="game-control">
                 <div class="general-control new-game">New game</div>
                 <div class="general-control reset-game">Reset</div>
-                <div class="difficulty"></div>
-                <div class="time-holder"></div>
+                <div class="difficulty-container">
+                    <input type="radio" id="easy" name="difficulty" value="easy">
+                    <label class="slider-label" for="easy">Easy</label>
+            
+                    <input type="radio" id="medium" name="difficulty" value="medium" checked>
+                    <label class="slider-label" for="medium">Medium</label>
+            
+                    <input type="radio" id="hard" name="difficulty" value="hard">
+                    <label class="slider-label" for="hard">Hard</label>
+                </div>
+                <div class="time-holder"><span class="timer">00:00:00</span></div>
 
             </div>
         </div>
