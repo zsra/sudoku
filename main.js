@@ -13,7 +13,8 @@ var seconds = 0;
 
 var solution = {};
 var puzzle = generateSudoku();
-
+var prevDifficulty = "medium";
+var currentDifficulty = "medium";
 
 startButton.addEventListener('click', () => {
   showTable();
@@ -22,14 +23,17 @@ startButton.addEventListener('click', () => {
 });
 
 resetGame.addEventListener('click', () => {
- 
-  puzzle = setPuzzleWithEmptyCells(solution);
+  selectDifficulty();
+  if(currentDifficulty !== prevDifficulty) {
+    puzzle = setPuzzleWithEmptyCells(solution);
+  }
 
   UpdateTable();
   resetTimer();
 });
 
 newGame.addEventListener('click', () => {
+  selectDifficulty();
   puzzle = generateSudoku();
   
   UpdateTable();
@@ -42,6 +46,7 @@ function UpdateTable() {
 
       if (table.rows[i].cells[j].className.includes("empty")) {
         table.rows[i].cells[j].classList.remove("empty");
+        table.rows[i].cells[j].children[0].removeEventListener('input', fillInputField());
         table.rows[i].cells[j].removeChild(table.rows[i].cells[j].children[0]);
       } else {
         table.rows[i].cells[j].innerHTML = "";
@@ -52,6 +57,7 @@ function UpdateTable() {
       } else {
         table.rows[i].cells[j].className = "empty";
         let input = document.createElement('input');
+        input.addEventListener('input', fillInputField());
         table.rows[i].cells[j].appendChild(input);
       }
     }
@@ -64,8 +70,7 @@ function showTable() {
 }
 
 function createCells(puzzle) {
-  for(let i = 0; i < 9; i++) {
-      
+  for(let i = 0; i < 9; i++) { 
     let row = table.insertRow(i);
 
     for(let j = 0; j < 9; j++) {
@@ -76,10 +81,29 @@ function createCells(puzzle) {
       } else {
         cell.className = "empty";
         let input = document.createElement('input');
+        input.addEventListener('input', fillInputField());
         cell.appendChild(input);
       }
     }
   }
+}
+
+function fillInputField() {
+  return function () {
+    const value = parseFloat(this.value);
+
+    if (isNaN(value) || value < 1 || value > 9) {
+      this.value = '';
+    }
+
+    let copy = puzzle.map(function(arr) {
+      return arr.slice();
+    });
+    
+    if(findEmptyCell(copy) === null && solveSudoku(copy)) {
+      alert("Done");
+    }
+  };
 }
 
 function generateSudoku() {
@@ -93,13 +117,12 @@ function generateSudoku() {
 }
 
 function setPuzzleWithEmptyCells(grid) {
-  let difficulty = selectDifficulty();
   let diffValue = 0.5;
 
-  if (difficulty === "easy") {
+  if (currentDifficulty === "easy") {
     diffValue = 0.3;
   }
-  else if (difficulty === "hard") {
+  else if (currentDifficulty === "hard") {
     diffValue = 0.7;
   }
 
@@ -220,7 +243,6 @@ function removeNumbers(grid, difficulty) {
 }
 
 function startTimer() {
-
   timerInterval = setInterval(function () {
     seconds++;
 
@@ -253,7 +275,8 @@ function selectDifficulty() {
   let value = "";
   radioButtons.forEach(function(radioButton) {
     if (radioButton.checked) {
-      value =  radioButton.value.toString();
+      prevDifficulty = currentDifficulty;
+      currentDifficulty =  radioButton.value.toString();
   }
   });
 
