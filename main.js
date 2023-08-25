@@ -13,12 +13,14 @@ var seconds = 0;
 
 var solution = {};
 var puzzle = generateSudoku();
+var original_puzzle = {}
 var prevDifficulty = "medium";
 var currentDifficulty = "medium";
 
 startButton.addEventListener('click', () => {
   showTable();
   createCells(puzzle);
+  original_puzzle = puzzle.map(row => [...row]);
   startTimer();
 });
 
@@ -26,6 +28,9 @@ resetGame.addEventListener('click', () => {
   selectDifficulty();
   if(currentDifficulty !== prevDifficulty) {
     puzzle = setPuzzleWithEmptyCells(solution);
+  }
+  else {
+    puzzle = original_puzzle.map(row => [...row]);
   }
 
   UpdateTable();
@@ -35,6 +40,7 @@ resetGame.addEventListener('click', () => {
 newGame.addEventListener('click', () => {
   selectDifficulty();
   puzzle = generateSudoku();
+  original_puzzle = puzzle.map(row => [...row]);
   
   UpdateTable();
   resetTimer();
@@ -57,6 +63,7 @@ function UpdateTable() {
       } else {
         table.rows[i].cells[j].className = "empty";
         let input = document.createElement('input');
+        input.id = `${i}${j}`;
         input.addEventListener('input', fillInputField());
         table.rows[i].cells[j].appendChild(input);
       }
@@ -81,6 +88,7 @@ function createCells(puzzle) {
       } else {
         cell.className = "empty";
         let input = document.createElement('input');
+        input.id = `${i}${j}`;
         input.addEventListener('input', fillInputField());
         cell.appendChild(input);
       }
@@ -91,9 +99,13 @@ function createCells(puzzle) {
 function fillInputField() {
   return function () {
     const value = parseFloat(this.value);
+    const position = this.id.split("");
 
     if (isNaN(value) || value < 1 || value > 9) {
       this.value = '';
+      puzzle[position[0]][position[1]] = 0;
+    } else {
+      puzzle[position[0]][position[1]] = value;
     }
 
     let copy = puzzle.map(function(arr) {
